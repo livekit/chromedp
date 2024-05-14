@@ -207,6 +207,7 @@ func (a *ExecAllocator) Allocate(ctx context.Context, opts ...BrowserOption) (*B
 
 	select {
 	case <-ctx.Done():
+		cmd.Wait()
 		return nil, ctx.Err()
 	case <-c.allocated: // for this browser's root context
 	}
